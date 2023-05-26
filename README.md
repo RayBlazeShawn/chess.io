@@ -1,5 +1,4 @@
-# chess.io
-# Real-time Multiplayer Chess
+# chess.io (Real-time Multiplayer Chess)
 
 A real-time multiplayer chess game built with Node.js, Express.js, MongoDB, Socket.io, and React.js (to be added). This game allows users to play chess with friends in real-time.
 
@@ -28,4 +27,13 @@ To run this project locally:
 
 (Note: MongoDB must be set up locally and the connection string must be correctly configured in `server.js`)
 
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to the project, feel free to submit a pull request with your proposed changes. We appreciate any improvements, bug fixes, or new features you bring to the table. Let's build this chess game together!
+
+## Changelog
+
+- Added a root endpoint that returns a welcome message.
+- Enhanced MongoDB Atlas connection setup to use a connection string from environment variables.
+- Integrated `dotenv` to manage environment variables.
 
