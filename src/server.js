@@ -1,7 +1,9 @@
 // Import necessary modules and files
+require('dotenv').config();
 const express = require('express'); // Express library for handling HTTP requests
 const mongoose = require('mongoose'); // Mongoose library for MongoDB interactions
 const authRoutes = require('../routes/auth'); // Routes for authentication
+const gameRoutes = require('../routes/game'); // Game routes
 const passport = require('passport'); // Authentication library
 const session = require('express-session'); // Express session for handling user sessions
 const cors = require('cors'); // CORS (Cross-Origin Resource Sharing) for handling resources from different origins
@@ -10,7 +12,7 @@ const cors = require('cors'); // CORS (Cross-Origin Resource Sharing) for handli
 const app = express();
 
 // Database connection
-mongoose.connect('mongodb://localhost:27017/chess-game', {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -23,7 +25,7 @@ app.use(cors()); // For handling CORS
 
 // Express session
 app.use(session({
-    secret: 'secret',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -31,9 +33,15 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.get('/', (req, res) => {
+    res.send('Welcome to Chess Online! May the best player win.');
+});
+
 
 // Use the auth routes for paths starting with /api/auth
 app.use('/api/auth', authRoutes);
+
+app.use('/api/game', gameRoutes); // Use the game routes for paths starting with /api/game
 
 // Setup http server to attach socket.io
 const http = require('http').createServer(app);
