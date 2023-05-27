@@ -9,9 +9,14 @@ const roomRoutes = require('../routes/room'); // Room routes
 const passport = require('passport'); // Authentication library
 const session = require('express-session'); // Express session for handling user sessions
 const cors = require('cors'); // CORS (Cross-Origin Resource Sharing) for handling resources from different origins
+const socket = require('./socket');
 
 // Initialize Express app
 const app = express();
+
+// Setup http server to attach socket.io
+const http = require('http').createServer(app);
+const io = socket.init(http);
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URL, {
@@ -46,10 +51,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/game', gameRoutes); // Use the game routes for paths starting with /api/game
 
 app.use('/api/room', roomRoutes); // Use the room routes for paths starting with /api/room
-
-// Setup http server to attach socket.io
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
 
 io.on('connection', (socket) => {
     console.log('a user connected');

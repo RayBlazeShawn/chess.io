@@ -1,5 +1,14 @@
+// controllers/gameController.js
 const chess = require('chess.js');
 const Game = require('../models/Game');
+const socket = require('../src/socket');
+
+exports.startGame = async (req, res) => {
+    // Add your logic for starting the game here
+
+    // for example
+    console.log('Welcome to Chess Online! May the best player win.');
+};
 
 exports.makeMove = async (req, res) => {
     const { gameId, move } = req.body;
@@ -21,6 +30,7 @@ exports.makeMove = async (req, res) => {
         await game.save();
 
         // Emit game update event to all connected sockets in the game room
+        const io = socket.getIO();
         io.to(gameId).emit('gameUpdate', game);
 
         res.send(game);

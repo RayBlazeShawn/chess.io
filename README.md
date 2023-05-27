@@ -34,6 +34,9 @@ Contributions are welcome! If you'd like to contribute to the project, feel free
 
 ## Changelog
 ### Added
+- Created four React components for the frontend application: ChessBoard.js, GameRoom.js, Login.js, and SignUp.js. These are set up to interact with server-side APIs and respond to real-time updates.
+- Introduced concurrently in the project setup to enable simultaneous running of backend and frontend during development.
+- Corrected duplicate declaration error in server.js, ensuring the successful start of the server.
 - Implemented `createRoom` and `joinRoom` functions in `controllers/roomController.js` for creating and joining game rooms
 - Introduced new routes for room creation and joining in `routes/room.js`
 - Room routes import and use statement in `server.js`
