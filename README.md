@@ -15,16 +15,17 @@ A real-time multiplayer chess game built with Node.js, Express.js, MongoDB, Sock
 - `/controllers` contains the logic to handle routes.
 - `/routes` contains definitions for route handlers.
 - `server.js` sets up the server, database connection, and socket.io
-- `/src/client` Contains React.js frontend components and logic.
-
+- `/client` Root directory for the React.js frontend. Contains components, logic, and styles for the client application.
 ## Setup Instructions
 
 To run this project locally:
 
 1. Clone this repository
-2. Install dependencies with `npm install`
-3. Start the server with `npm start`
-4. Visit `localhost:3000` in your browser
+2. Navigate to the root directory and install dependencies with `npm install`
+3. Navigate to the client directory with `cd client` and install dependencies with `npm install`
+4. Navigate back to the root directory with `cd ..` and start the server with `npm run server`
+5. In a separate terminal window, navigate to the client directory with `cd client` and start the client with `npm start`
+6. Visit `localhost:3000` in your browser
 
 (Note: MongoDB must be set up locally and the connection string must be correctly configured in `server.js`)
 
