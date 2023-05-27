@@ -15,6 +15,7 @@ A real-time multiplayer chess game built with Node.js, Express.js, MongoDB, Sock
 - `/controllers` contains the logic to handle routes.
 - `/routes` contains definitions for route handlers.
 - `server.js` sets up the server, database connection, and socket.io
+- `/src/client` Contains React.js frontend components and logic.
 
 ## Setup Instructions
 
@@ -32,7 +33,17 @@ To run this project locally:
 Contributions are welcome! If you'd like to contribute to the project, feel free to submit a pull request with your proposed changes. We appreciate any improvements, bug fixes, or new features you bring to the table. Let's build this chess game together!
 
 ## Changelog
+### Added
+- Implemented `createRoom` and `joinRoom` functions in `controllers/roomController.js` for creating and joining game rooms
+- Introduced new routes for room creation and joining in `routes/room.js`
+- Room routes import and use statement in `server.js`
+- Logic in `GameRoom` component to handle room creation and joining
+- Real-time updates when a move is made using Socket.IO. This includes:
+    - Server-side event emission in `gameController.js`
+    - Client-side event listener in `ChessBoard` component
 
+### Changed
+- Updated `GameRoom` component in `src/client/components/GameRoom.js` to include room creation and joining functionality
 - Added a root endpoint that returns a welcome message.
 - Enhanced MongoDB Atlas connection setup to use a connection string from environment variables.
 - Integrated `dotenv` to manage environment variables.

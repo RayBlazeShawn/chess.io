@@ -4,6 +4,8 @@ const express = require('express'); // Express library for handling HTTP request
 const mongoose = require('mongoose'); // Mongoose library for MongoDB interactions
 const authRoutes = require('../routes/auth'); // Routes for authentication
 const gameRoutes = require('../routes/game'); // Game routes
+const roomRoutes = require('../routes/room'); // Room routes
+
 const passport = require('passport'); // Authentication library
 const session = require('express-session'); // Express session for handling user sessions
 const cors = require('cors'); // CORS (Cross-Origin Resource Sharing) for handling resources from different origins
@@ -42,6 +44,8 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 
 app.use('/api/game', gameRoutes); // Use the game routes for paths starting with /api/game
+
+app.use('/api/room', roomRoutes); // Use the room routes for paths starting with /api/room
 
 // Setup http server to attach socket.io
 const http = require('http').createServer(app);

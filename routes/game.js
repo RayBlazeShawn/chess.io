@@ -3,6 +3,8 @@ const express = require('express'); // Express library for handling routes
 const router = express.Router(); // Router object
 const gameController = require('../controllers/gameController'); // Controller logic for game
 
+router.post('/start', gameController.startGame);
+
 // Route for making a move, use the makeMove controller logic
 router.post('/makeMove', gameController.makeMove);
 

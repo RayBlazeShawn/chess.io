@@ -20,6 +20,9 @@ exports.makeMove = async (req, res) => {
         game.currentTurn = chessGame.turn() === 'w' ? game.players[0] : game.players[1];
         await game.save();
 
+        // Emit game update event to all connected sockets in the game room
+        io.to(gameId).emit('gameUpdate', game);
+
         res.send(game);
     } else {
         // If the move is not valid, return an error
