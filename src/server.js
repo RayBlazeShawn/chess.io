@@ -5,6 +5,7 @@ const mongoose = require('mongoose'); // Mongoose library for MongoDB interactio
 const authRoutes = require('../routes/auth'); // Routes for authentication
 const gameRoutes = require('../routes/game'); // Game routes
 const roomRoutes = require('../routes/room'); // Room routes
+const path = require('path'); // built-in Node.js module for handling file paths
 
 const passport = require('passport'); // Authentication library
 const session = require('express-session'); // Express session for handling user sessions
@@ -51,6 +52,15 @@ app.use('/api/auth', authRoutes);
 app.use('/api/game', gameRoutes); // Use the game routes for paths starting with /api/game
 
 app.use('/api/room', roomRoutes); // Use the room routes for paths starting with /api/room
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')));
+
+// The "catchall" handler: for any request that doesn't
+// match one already above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
+});
 
 io.on('connection', (socket) => {
     console.log('a user connected');
