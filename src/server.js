@@ -38,6 +38,25 @@ app.use(session({
     saveUninitialized: true
 }));
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('move', (data) => {
+        // TODO: Implement a way to know which room the socket is in
+        // roomId should be retrieved from the current socket's room
+        const roomId = '';
+
+        // Save the move to database here
+
+        // Broadcast the move to the other player
+        socket.broadcastMove(data, roomId);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
